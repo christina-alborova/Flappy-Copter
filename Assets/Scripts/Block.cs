@@ -19,10 +19,10 @@ public class Block : MonoBehaviour
 
         while(true)
         {
-            yield return new WaitForSeconds(3.2f);
-
-            var createdObject = Instantiate(Pipes, new Vector3(7, 0, 0), Quaternion.identity);
-            Destroy(createdObject, 7);
+            yield return new WaitForSeconds(2);
+            float rand = Random.Range(-1f, 2f);
+            var createdObject = Instantiate(Pipes, new Vector3(2, rand, 0), Quaternion.identity);
+            Destroy(createdObject, 2);
             
             
         }

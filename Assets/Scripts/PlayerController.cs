@@ -1,50 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
+[RequireComponent(typeof(Rigidbody2D), typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
-    public AudioSource musicAudio;
- 
-    // Start is called before the first frame update
-    void Start()
-    {
-       
+    private AudioSource _musicAudio;
+    private Rigidbody2D _rigidbody2D;
 
-    }
-    void Jump()
+    private void Awake()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0.1f, 0f);
-        GetComponent<Rigidbody2D>().AddForce(Vector2.up*80);
-        
-
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _musicAudio = GetComponent<AudioSource>();
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    private void Update()
     {
-        
-        if ((col.tag == ("Enemy")))
-        {
-            SceneManager.LoadScene("SampleScene");
-
-        }
+        if (Input.GetMouseButtonDown(0) || Input.touchCount > 0) Jump();
     }
 
-
-
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (Input.touchCount>0)
-        {
-            Jump();
-            musicAudio.Play(0);
-            
-        }
-       
+        if (col.CompareTag("Enemy")) SceneManager.LoadScene("SampleScene");
+    }
 
+    private void Jump()
+    {
+        _musicAudio.Play(0);
+        _rigidbody2D.velocity = new Vector2(0.1f, 0f);
+        _rigidbody2D.AddForce(Vector2.up * 80);
     }
 }
