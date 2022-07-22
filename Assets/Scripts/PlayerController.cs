@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         _musicAudio.Play(0);
-        _rigidbody2D.velocity = new Vector2(0.1f, 0f);
+        _rigidbody2D.velocity = new Vector2(0f, 0f);
         _rigidbody2D.AddForce(Vector2.up * 80);
     }
 }
