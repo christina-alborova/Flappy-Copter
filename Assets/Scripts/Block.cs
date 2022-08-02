@@ -7,7 +7,7 @@ public class Block : MonoBehaviour
     // Start is called before the first frame update
     
     public float speed;
-    public GameObject Pipes;
+    public GameObject Pipe;
 
    void Start()
     {
@@ -21,7 +21,7 @@ public class Block : MonoBehaviour
         {
             yield return new WaitForSeconds(5);
             float rand = Random.Range(-1f, 2f);
-            var createdObject = Instantiate(Pipes, new Vector3(5, rand, 0), Quaternion.identity);
+            var createdObject = Instantiate(Pipe, new Vector3(5, rand, 0), Quaternion.identity);
             Destroy(createdObject, 5);
             
             
